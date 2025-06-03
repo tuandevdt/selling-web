@@ -27,7 +27,7 @@ function Login() {
       
       // Kiểm tra role để điều hướng
       const user = authService.getUser()
-      if (user?.role === 2) {
+      if (user?.role === 'admin') {
         navigate('/admin')
       } else {
         navigate('/')

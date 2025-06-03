@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { cartService } from '../../services/cartService'
-import { Radio, App } from 'antd'
+import { Radio, App, Card } from 'antd'
 import { authService } from '../../services/authService'
 import { useGetProductImagesQuery } from '../../services/products.service'
 
@@ -41,6 +41,7 @@ export default function CheckoutPage() {
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
   const { message } = App.useApp()
+  const user = authService.getUser()
 
   useEffect(() => {
     const items = cartService.getCart()
@@ -56,7 +57,6 @@ export default function CheckoutPage() {
   const handleCreateOrder = async () => {
     try {
       setLoading(true)
-      const user = authService.getUser()
       
       if (!user) {
         message.error('Vui lòng đăng nhập để tiếp tục')
@@ -99,22 +99,41 @@ export default function CheckoutPage() {
     }
   }
 
+  if (!user) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold mb-4">Vui lòng đăng nhập để tiếp tục</h2>
+          <button
+            onClick={() => navigate('/login')}
+            className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
+          >
+            Đăng nhập
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-8">
         {/* Thông tin đơn hàng */}
-        <div>
-          <h2 className="text-2xl font-bold mb-6">Thông tin đơn hàng</h2>
-          <div className="bg-white shadow overflow-hidden sm:rounded-lg">
-            <ul className="divide-y divide-gray-200">
-              {cartItems.map((item) => (
-                <OrderItem key={item.product_item_id} item={item} />
-              ))}
-            </ul>
-            <div className="border-t border-gray-200 px-4 py-5">
-              <div className="flex justify-between text-base font-medium text-gray-900">
-                <p>Tổng tiền</p>
-                <p>{totalPrice.toLocaleString('vi-VN')}₫</p>
+        <div className="space-y-6">
+
+          <div>
+            <h2 className="text-2xl font-bold mb-6">Thông tin đơn hàng</h2>
+            <div className="bg-white shadow overflow-hidden sm:rounded-lg">
+              <ul className="divide-y divide-gray-200">
+                {cartItems.map((item) => (
+                  <OrderItem key={item.product_item_id} item={item} />
+                ))}
+              </ul>
+              <div className="border-t border-gray-200 px-4 py-5">
+                <div className="flex justify-between text-base font-medium text-gray-900">
+                  <p>Tổng tiền</p>
+                  <p>{totalPrice.toLocaleString('vi-VN')}₫</p>
+                </div>
               </div>
             </div>
           </div>
@@ -122,6 +141,22 @@ export default function CheckoutPage() {
 
         {/* Phương thức thanh toán */}
         <div>
+        <Card title="Thông tin người đặt" className="bg-white shadow mb-6">
+            <div className="space-y-3">
+              <div className="flex justify-between">
+                <span className="text-gray-500">Họ tên:</span>
+                <span className="font-medium">{user.fullname}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-gray-500">Email:</span>
+                <span className="font-medium">{user.email}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-gray-500">Số điện thoại:</span>
+                <span className="font-medium">{user.phoneNumber || 'Chưa cập nhật'}</span>
+              </div>
+            </div>
+          </Card>
           <h2 className="text-2xl font-bold mb-6">Phương thức thanh toán</h2>
           <div className="bg-white shadow sm:rounded-lg p-6">
             <Radio.Group 
