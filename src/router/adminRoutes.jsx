@@ -6,6 +6,8 @@ import ManageOrders from '../pages/admin/orders/ManageOrders'
 import ManageSuppliers from '../pages/admin/ManageSuppliers'
 import AuthMiddleware from '../middleware/AuthMiddleware'
 import ForbiddenPage from '../pages/ForbiddenPage'
+import ManagerUser from '../pages/admin/users/ManagerUser'
+import ManagerFeedback from '../pages/admin/feedbacks/ManagerFeedback'
 
 const adminRoutes = {
   path: '/admin',
@@ -17,10 +19,12 @@ const adminRoutes = {
   errorElement: <ForbiddenPage />,
   children: [
     { index: true, element: <Dashboard /> },
+    { path: 'users', element: <ManagerUser /> },
     { path: 'products', element: <ManageProducts /> },
     { path: 'categories', element: <ManageCategories /> },
     { path: 'orders', element: <ManageOrders /> },
-    { path: 'suppliers', element: <ManageSuppliers /> }
+    { path: 'suppliers', element: <ManageSuppliers /> },
+    { path: 'feedbacks', element: <ManagerFeedback /> }
   ]
 }
 

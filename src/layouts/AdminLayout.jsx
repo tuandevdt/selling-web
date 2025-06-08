@@ -107,7 +107,7 @@ function AdminLayout() {
               </li>
               <li>
                 <Link
-            to="/admin/customers"
+            to="/admin/users"
             className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100"
             onClick={() => isMobile && setSidebarOpen(false)}
                 >
@@ -115,18 +115,6 @@ function AdminLayout() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
             <span className="ml-3">Khách hàng</span>
-                </Link>
-              </li>
-              <li>
-                <Link
-            to="/admin/employees"
-            className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100"
-            onClick={() => isMobile && setSidebarOpen(false)}
-                >
-            <svg className="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            <span className="ml-3">Nhân viên</span>
                 </Link>
               </li>
               <li>
@@ -139,18 +127,6 @@ function AdminLayout() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 3.866-3.582 7-8 7a8.96 8.96 0 01-4-.93L3 21l1.07-3.21A7.963 7.963 0 013 12c0-3.866 3.582-7 8-7s8 3.134 8 7z" />
             </svg>
             <span className="ml-3">Đánh giá</span>
-                </Link>
-              </li>
-              <li>
-                <Link
-            to="/admin/statistics"
-            className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100"
-            onClick={() => isMobile && setSidebarOpen(false)}
-                >
-            <svg className="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 17v-6a1 1 0 011-1h2a1 1 0 011 1v6m4 0v-4a1 1 0 011-1h2a1 1 0 011 1v4m4 0v-2a1 1 0 011-1h2a1 1 0 011 1v2" />
-            </svg>
-            <span className="ml-3">Thống kê</span>
                 </Link>
               </li>
             </ul>
